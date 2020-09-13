@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
-import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.MyException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.GroupService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class GroupController {
     }
 
     @PatchMapping("{id}")
-    public Group updateGroupName(@PathVariable int id) {
-        return null;
+    public Group updateGroupName(@PathVariable int id,String name) throws MyException {
+        return groupService.updateGroupName(id,name);
     }
 }

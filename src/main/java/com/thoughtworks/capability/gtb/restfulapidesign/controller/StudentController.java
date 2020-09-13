@@ -1,13 +1,12 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
-import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.MyException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteStudent(@PathVariable int id) throws StudentException {
+    public void deleteStudent(@PathVariable int id) throws MyException {
         studentService.deleteStudent(id);
     }
     @GetMapping
@@ -36,12 +35,12 @@ public class StudentController {
     }
 
     @GetMapping("{id}")
-    public Student getStudent(@PathVariable int id) throws StudentException {
+    public Student getStudent(@PathVariable int id) throws MyException {
         return studentService.getStudent(id);
     }
 
     @PutMapping("{id}")
-    public Student updateStudents(@PathVariable int id,@Valid Student student) throws StudentException {
+    public Student updateStudents(@PathVariable int id,@Valid Student student) throws MyException {
         student.setId(id);
         return studentService.updateStudents(student);
     }

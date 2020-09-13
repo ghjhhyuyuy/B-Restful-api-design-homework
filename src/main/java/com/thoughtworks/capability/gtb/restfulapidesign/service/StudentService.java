@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
-import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.MyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,11 @@ public class StudentService {
         return student;
     }
 
-    public void deleteStudent(int id) throws StudentException {
+    public void deleteStudent(int id) throws MyException {
         try {
             studentList.remove(id);
         } catch (Exception e) {
-            throw new StudentException("删除失败");
+            throw new MyException("删除失败");
         }
 
     }
@@ -35,16 +35,16 @@ public class StudentService {
         return studentList.stream().filter(student -> student.getGender().equals(gender)).collect(Collectors.toList());
     }
 
-    public Student getStudent(int id) throws StudentException {
+    public Student getStudent(int id) throws MyException {
         try {
             return studentList.get(id);
         } catch (Exception e) {
-            throw new StudentException("获取学生失败");
+            throw new MyException("获取学生失败");
         }
 
     }
 
-    public Student updateStudents(Student student) throws StudentException {
+    public Student updateStudents(Student student) throws MyException {
         Student studentOld = studentList.get(student.getId());
         if(student.getName() != null){
             studentOld.setName(student.getName());
@@ -58,7 +58,7 @@ public class StudentService {
         try {
             studentList.set(student.getId(), studentOld);
         } catch (Exception e) {
-            throw new StudentException("更新数据失败");
+            throw new MyException("更新数据失败");
         }
         return studentOld;
     }

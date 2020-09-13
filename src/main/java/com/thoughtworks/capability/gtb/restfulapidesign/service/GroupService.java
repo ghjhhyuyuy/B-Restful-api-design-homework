@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.MyException;
 import com.thoughtworks.capability.gtb.restfulapidesign.util.GroupUtil;
 
 import java.io.IOException;
@@ -29,5 +30,18 @@ public class GroupService {
             GroupUtil.keepGroupNameGetNewGroup(this.groupList,newStudentList,moreInLine,numberOfLine);
         }
         return groupList;
+    }
+
+    public Group updateGroupName(int id, String name) throws MyException {
+        try{
+            Group group = groupList.get(id);
+            group.setName(name);
+            groupList.set(id,group);
+            return group;
+        }catch (Exception e){
+            throw new MyException("更新组名失败");
+        }
+
+
     }
 }
