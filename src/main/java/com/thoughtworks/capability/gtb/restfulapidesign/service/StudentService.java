@@ -11,6 +11,7 @@ import java.util.List;
 public class StudentService {
     private final List<Student> studentList = new ArrayList<>();
     public Student addStudent(Student student) {
+        student.setId(studentList.size());
         studentList.add(student);
         return student;
     }
