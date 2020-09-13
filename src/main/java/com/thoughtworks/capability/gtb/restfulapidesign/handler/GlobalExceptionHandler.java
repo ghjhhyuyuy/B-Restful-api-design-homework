@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(StudentException.class)
-    public ResponseEntity<StudentException> handle(StudentException exception) {
+    @ExceptionHandler({StudentException.class,Exception.class})
+    public ResponseEntity<Exception> handle(Exception exception) {
         HttpStatus state = HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(state).body(exception);
     }

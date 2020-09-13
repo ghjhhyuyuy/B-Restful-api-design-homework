@@ -6,6 +6,7 @@ import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class StudentController {
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Student addStudent(@RequestBody Student student){
+    public Student addStudent(@RequestBody @Valid Student student){
         return studentService.addStudent(student);
     }
 
@@ -36,5 +37,11 @@ public class StudentController {
     @GetMapping("{id}")
     public Student getStudent(@PathVariable int id) throws StudentException {
         return studentService.getStudent(id);
+    }
+
+    @PutMapping("{id}")
+    public Student updateStudents(@PathVariable int id,@Valid Student student) throws StudentException {
+        student.setId(id);
+        return studentService.updateStudents(student);
     }
 }
