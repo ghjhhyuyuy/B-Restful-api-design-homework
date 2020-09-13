@@ -1,7 +1,10 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.util.GroupUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,20 @@ import java.util.List;
 public class GroupService {
     private final List<Group> groupList = new ArrayList<>();
     public List<Group> getGroups() {
+        return groupList;
+    }
+
+    public List<Group> createGroups() throws IOException, ClassNotFoundException {
+        List<Student> studentList = StudentService.studentList;
+        List<Student> newStudentList = GroupUtil.deepCopy(studentList);
+        GroupUtil.randomlySortedList(newStudentList);
+        int numberOfLine = studentList.size() / 6;
+        int moreInLine = studentList.size() % 6;
+        if (groupList.isEmpty()) {
+            GroupUtil.createNewGroup(this.groupList,newStudentList,moreInLine,numberOfLine);
+        } else {
+            GroupUtil.keepGroupNameGetNewGroup(this.groupList,newStudentList,moreInLine,numberOfLine);
+        }
         return groupList;
     }
 }

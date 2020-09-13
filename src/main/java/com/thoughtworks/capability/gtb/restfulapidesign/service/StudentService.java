@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Created by wzw on 2020/9/13.
  */
 public class StudentService {
-    private final List<Student> studentList = new ArrayList<>();
+    public static final List<Student> studentList = new ArrayList<>();
 
     public Student addStudent(Student student) {
         student.setId(studentList.size());

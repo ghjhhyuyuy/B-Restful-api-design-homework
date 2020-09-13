@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by wzw on 2020/9/13.
@@ -13,8 +14,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Group {
-    int id;
+    private int id;
     @NotNull
-    String name;
-    String note;
+    private String name;
+    private String note;
+    @NotNull
+    private List<Student> members;
 }

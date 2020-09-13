@@ -1,9 +1,11 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
+import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.GroupService;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,9 +25,9 @@ public class GroupController {
         return groupService.getGroups();
     }
 
-    @PutMapping
-    public List<Group> updateGroups() {
-        return null;
+    @PostMapping
+    public List<Group> createGroups() throws IOException, ClassNotFoundException {
+        return groupService.createGroups();
     }
 
     @PatchMapping("{id}")
