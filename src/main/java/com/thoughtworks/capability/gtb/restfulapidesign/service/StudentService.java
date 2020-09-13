@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,13 @@ public class StudentService {
         return student;
     }
 
-    public void deleteStudent(int id) {
-        studentList.remove(id);
+    public void deleteStudent(int id) throws StudentException {
+        try{
+            studentList.remove(id);
+        }catch (Exception e){
+            throw new StudentException("删除失败");
+        }
+
     }
 
     public List<Student> getStudents(String gender) {
@@ -26,5 +32,14 @@ public class StudentService {
             return studentList;
         }
         return studentList.stream().filter(student -> student.getGender().equals(gender)).collect(Collectors.toList());
+    }
+
+    public Student getStudent(int id) throws StudentException {
+        try{
+            return studentList.get(id);
+        }catch (Exception e){
+            throw new StudentException("获取学生失败");
+        }
+
     }
 }

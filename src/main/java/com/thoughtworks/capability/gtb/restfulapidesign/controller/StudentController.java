@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentException;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +25,16 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteStudent(@PathVariable int id){
+    public void deleteStudent(@PathVariable int id) throws StudentException {
         studentService.deleteStudent(id);
     }
     @GetMapping
     public List<Student> getStudents(@RequestParam(required = false) String gender){
         return studentService.getStudents(gender);
+    }
+
+    @GetMapping("{id}")
+    public Student getStudent(@PathVariable int id) throws StudentException {
+        return studentService.getStudent(id);
     }
 }

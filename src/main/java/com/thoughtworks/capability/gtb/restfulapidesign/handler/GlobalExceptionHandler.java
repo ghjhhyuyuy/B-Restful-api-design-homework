@@ -1,0 +1,19 @@
+package com.thoughtworks.capability.gtb.restfulapidesign.handler;
+
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+/**
+ * Created by wzw on 2020/9/14.
+ */
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(StudentException.class)
+    public ResponseEntity<StudentException> handle(StudentException exception) {
+        HttpStatus state = HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(state).body(exception);
+    }
+}
