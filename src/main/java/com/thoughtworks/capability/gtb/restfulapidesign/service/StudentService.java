@@ -15,4 +15,8 @@ public class StudentService {
         studentList.add(student);
         return student;
     }
+
+    public void deleteStudent(int id) {
+        studentList.remove(id);
+    }
 }
