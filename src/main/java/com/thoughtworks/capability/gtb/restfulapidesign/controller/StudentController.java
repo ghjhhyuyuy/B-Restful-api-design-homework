@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     @PutMapping("{id}")
-    public Student updateStudents(@PathVariable int id,@Valid Student student) throws MyException {
+    public Student updateStudents(@PathVariable int id,@RequestBody @Valid Student student) throws MyException {
         student.setId(id);
         return studentService.updateStudents(student);
     }

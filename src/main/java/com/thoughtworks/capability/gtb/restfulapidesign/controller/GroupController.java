@@ -31,7 +31,7 @@ public class GroupController {
     }
 
     @PatchMapping("{id}")
-    public Group updateGroupName(@PathVariable int id,String name) throws MyException {
+    public Group updateGroupName(@PathVariable int id,@RequestBody String name) throws MyException {
         return groupService.updateGroupName(id,name);
     }
 }
