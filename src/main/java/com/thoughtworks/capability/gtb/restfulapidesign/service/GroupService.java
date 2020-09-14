@@ -34,6 +34,7 @@ public class GroupService {
 
     public Group updateGroupName(int id, String name) throws MyException {
         try{
+            id = id -1;
             Group group = groupList.get(id);
             group.setName(name);
             groupList.set(id,group);
